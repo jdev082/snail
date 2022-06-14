@@ -19,5 +19,6 @@ if [ -z "${files[0]}" ]; then
 fi
 for file in "${files[@]}"
 do
+    cat " " >> $output
     cat $file >> $output
 done
