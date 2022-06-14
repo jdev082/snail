@@ -9,15 +9,15 @@ else
     exit 1
 fi
 
+if [ -f $output ]; then
+	rm $output
+fi
+
 if [ -z "${files[0]}" ]; then
     echo "No files defined in snail.config.sh"
     exit 1
 fi
 for file in "${files[@]}"
 do
-    if [ -f $output ]
-    then
-        rm $output
-    fi
     cat $file >> $output
 done
