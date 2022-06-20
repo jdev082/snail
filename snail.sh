@@ -2,23 +2,49 @@
 # snail shell builder
 output=main.sh
 
+if [ "$1" == 'init' ]; then
+    touch snail.config.sh
+    echo "
+    declare -a files=(
+)
+
+output="main.sh"" > snail.config.sh
+exit
+fi
+
 if [ -f snail.config.sh ]; then
     source snail.config.sh
-else 
+else
+    if [ "$1" == '--config' ]; then
+        if [ -f "$2" ]; then
+            source "$2"
+        else
+            echo "$2" not found
+            exit 1
+        fi
+    fi
     echo "snail.config.sh not found"
     exit 1
 fi
 
-if [ -f $output ]; then
-	rm $output
+if [ "$1" == '-o' ];
+then
+    output=$2
+fi
+
+if [ -f "$output" ]; then
+	rm "$output"
 fi
 
 if [ -z "${files[0]}" ]; then
     echo "No files defined in snail.config.sh"
     exit 1
 fi
-for file in "${files[@]}"
-do
-    echo  " " >> $output
-    cat $file >> $output
-done
+
+if [ "$1" == 'build' ]; then
+    for file in "${files[@]}"
+    do
+        echo  " " >> "$output"
+        cat "$file" >> "$output"
+    done
+fi
