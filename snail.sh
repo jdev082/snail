@@ -44,7 +44,7 @@ fi
 if [ "$1" == 'build' ]; then
     for file in "${files[@]}"
     do
-        echo  " " >> "$output"
+        # echo  '\n' >> "$output"
         cat "$file" >> "$output"
     done
 fi
