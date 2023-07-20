@@ -2,6 +2,14 @@
 # snail shell builder
 output=main.sh
 
+if [ ! -n "$1"]
+then
+    exit
+else
+    echo 'args: --config for alternate config, -o for alternate output, build to build, init to create config'
+    exit
+fi
+
 if [ "$1" == 'init' ]; then
     touch snail.config.sh
     echo "
@@ -45,7 +53,8 @@ fi
 if [ "$1" == 'build' ]; then
     for file in "${files[@]}"
     do
-        # echo  '\n' >> "$output"
+        echo  '\n' >> "$output"
         cat "$file" >> "$output"
     done
 fi
+
