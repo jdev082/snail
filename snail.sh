@@ -5,9 +5,10 @@ output=main.sh
 if [ "$1" == 'init' ]; then
     touch snail.config.sh
     echo "
-    declare -a files=(
-)
+    # define the files that will be combined
+    declare -a files=()
 
+# set the output file
 output="main.sh"" > snail.config.sh
 exit
 fi
